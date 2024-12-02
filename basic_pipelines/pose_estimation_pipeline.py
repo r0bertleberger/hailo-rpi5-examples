@@ -80,6 +80,14 @@ class GStreamerPoseEstimationApp(GStreamerApp):
         user_callback_pipeline = USER_CALLBACK_PIPELINE()
         # Replace DISPLAY_PIPELINE with a fakesink to disable graphical output
         display_pipeline = "fakesink"
+
+        # Ajoutez des logs pour diagnostiquer chaque composant
+        print(f"Source Pipeline: {source_pipeline}")
+        print(f"Inference Pipeline: {infer_pipeline}")
+        print(f"User Callback Pipeline: {user_callback_pipeline}")
+        print(f"Display Pipeline: {display_pipeline}")
+
+    
         pipeline_string = (
             f'{source_pipeline} '
             f'{infer_pipeline} ! '
