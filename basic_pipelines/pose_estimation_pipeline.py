@@ -15,19 +15,17 @@ from hailo_rpi_common import (
     SOURCE_PIPELINE,
     INFERENCE_PIPELINE,
     USER_CALLBACK_PIPELINE,
-    DISPLAY_PIPELINE,
     GStreamerApp,
     app_callback_class,
     dummy_callback,
     detect_hailo_arch,
 )
 
-#-----------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------
 # User Gstreamer Application
 # -----------------------------------------------------------------------------------------------
 
 # This class inherits from the hailo_rpi_common.GStreamerApp class
-
 class GStreamerPoseEstimationApp(GStreamerApp):
     def __init__(self, app_callback, user_data):
         parser = get_default_parser()
@@ -41,7 +39,6 @@ class GStreamerPoseEstimationApp(GStreamerApp):
         self.network_height = 640
         self.network_format = "RGB"
 
-
         # Determine the architecture if not specified
         if args.arch is None:
             detected_arch = detect_hailo_arch()
@@ -51,8 +48,6 @@ class GStreamerPoseEstimationApp(GStreamerApp):
             print(f"Auto-detected Hailo architecture: {self.arch}")
         else:
             self.arch = args.arch
-
-
 
         # Set the HEF file path based on the architecture
         if args.hef_path:
@@ -68,13 +63,13 @@ class GStreamerPoseEstimationApp(GStreamerApp):
         self.post_process_so = os.path.join(self.current_path, '../resources/libyolov8pose_postprocess.so')
         self.post_process_function = "filter"
 
-
         # Set the process title
         setproctitle.setproctitle("Hailo Pose Estimation App")
 
         self.create_pipeline()
 
     def get_pipeline_string(self):
+        # Use fakesink instead of a graphical display
         source_pipeline = SOURCE_PIPELINE(video_source=self.video_source)
         infer_pipeline = INFERENCE_PIPELINE(
             hef_path=self.hef_path,
@@ -83,6 +78,7 @@ class GStreamerPoseEstimationApp(GStreamerApp):
             batch_size=self.batch_size
         )
         user_callback_pipeline = USER_CALLBACK_PIPELINE()
+        # Replace DISPLAY_PIPELINE with a fakesink to disable graphical output
         display_pipeline = "fakesink"
         pipeline_string = (
             f'{source_pipeline} '
