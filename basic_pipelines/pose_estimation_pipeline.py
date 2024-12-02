@@ -83,7 +83,7 @@ class GStreamerPoseEstimationApp(GStreamerApp):
             batch_size=self.batch_size
         )
         user_callback_pipeline = USER_CALLBACK_PIPELINE()
-        display_pipeline = fakesink
+        display_pipeline = "fakesink"
         pipeline_string = (
             f'{source_pipeline} '
             f'{infer_pipeline} ! '
