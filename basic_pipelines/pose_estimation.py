@@ -51,11 +51,8 @@ def app_callback(pad, info, user_data):
                     x = int((point.x() * bbox.width() + bbox.xmin()) * width)
                     y = int((point.y() * bbox.height() + bbox.ymin()) * height)
                     string_to_print += f"{keypoint_name}: x: {x:.2f} y: {y:.2f}\n"
-                    if user_data.use_frame:
-                        cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
-
     if user_data.use_frame:
-        frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+        #frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
         user_data.set_frame(frame)
 
     print(string_to_print)

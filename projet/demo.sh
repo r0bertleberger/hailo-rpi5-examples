@@ -1,0 +1,15 @@
+#!bin/bash
+
+ffmpeg -i http://192.168.1.5:81/stream -t 5 -c:v copy output.mp4
+
+ffmpeg -i output.mp4 -s 640x640 -c:a copy output-bis.mp4
+
+source Git/hailo-rpi5-examples/setup_env.sh
+
+source Git/hailo-rpi5-examples/projet/test.sh output-bis resultat
+
+source /home/pi/test-venv/bin/activate
+
+python Git/hailo-rpi5-examples/projet/seconde-ia.py resultat.txt
+
+
