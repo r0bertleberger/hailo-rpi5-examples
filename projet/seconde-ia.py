@@ -6,7 +6,7 @@ import sys
 
 
 input_files = sys.argv[1]
-output_file = 'lorem-lupsum.txt' 
+output_file = 'lorem-lipsum.txt'
 
 
 frame_pattern = re.compile(r'Frame count: (\d+)')
@@ -67,6 +67,6 @@ df_test = df_test.drop(df_test.columns[0], axis=1)
 
 print(model.predict(df_test).mean())
 if model.predict(df_test).mean() < 0.3:
-    print("wrong pose")
+    print("la posture est mauvaise")
 else:
-    print("correct pose")
+    print("la posture est correcte")
