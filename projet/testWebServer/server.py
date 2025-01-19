@@ -3,8 +3,6 @@ import subprocess
 
 app = Flask(__name__)
 
-CLEAN_PATH = "clean.sh"
-SCRIPT_PATH = "test.sh"
 
 HTML_TEMPLATE = """
 <!DOCTYPE html>
@@ -31,7 +29,7 @@ HTML_TEMPLATE = """
     {% endif %}
     
     <h1>Flux MJPEG</h1>
-    <img src="http://127.0.0.1:5050" alt="Flux vidéo" style="width: 100%; max-width: 640px; height: auto; border: 1px solid #ccc;">
+    <img src="http://192.168.1.22:5050" alt="Flux vidéo" style="width: 100%; max-width: 640px; height: auto; border: 1px solid #ccc;">
 </body>
 </html>
 """
@@ -47,9 +45,9 @@ def index():
         
         # Choisir le script à exécuter en fonction de l'option sélectionnée
         if script_choice == "script-1":
-            script_path = "/chemin/vers/script-1.sh"
+            script_path = "/home/pi/Git/hailo-rpi5-examples/projet/testWebServer/lancer-ia"
         elif script_choice == "script-2":
-            script_path = "/chemin/vers/script-2.sh"
+            script_path = "/home/pi/Git/hailo-rpi-examples/projet/testWebServer/afficher-resultats.sh"
         
         if script_path:
             try:
@@ -57,7 +55,10 @@ def index():
                 result = subprocess.run(
                     ["/bin/bash", script_path], capture_output=True, text=True, check=True
                 )
-                output = result.stdout  # Capture stdout
+		if script_choice == "script-1":
+			output = "l'IA est en train de tourner"
+		else:
+                	output = result.stdout  # Capture stdout
             except subprocess.CalledProcessError as e:
                 output = f"Erreur lors de l'exécution du script : {e.stderr}"
     
