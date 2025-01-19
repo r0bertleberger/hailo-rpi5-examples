@@ -3,7 +3,6 @@ import subprocess
 
 app = Flask(__name__)
 
-
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
@@ -55,10 +54,10 @@ def index():
                 result = subprocess.run(
                     ["/bin/bash", script_path], capture_output=True, text=True, check=True
                 )
-		if script_choice == "script-1":
-			output = "l'IA est en train de tourner"
-		else:
-                	output = result.stdout  # Capture stdout
+                if script_choice == "script-1":
+                    output = "l'IA est en train de tourner"
+                else:
+                    output = result.stdout  # Capture stdout
             except subprocess.CalledProcessError as e:
                 output = f"Erreur lors de l'exécution du script : {e.stderr}"
     
