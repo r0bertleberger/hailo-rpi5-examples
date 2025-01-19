@@ -1,8 +1,8 @@
 #! /bin/bash
 
 
-VIDEO_PATH="/home/pi/$1.mp4"
-OUT_PATH="/home/pi/$2"
+VIDEO_PATH="$1.mp4"
+OUT_PATH="$2"
 
 echo $VIDEO_PATH
 echo $OUT_PATH

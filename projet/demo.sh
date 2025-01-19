@@ -1,15 +1,15 @@
 #!bin/bash
 
-ffmpeg -i http://192.168.1.3:81/stream -t 5 -c:v copy output.mp4
+timeout 5 cvlc http://127.0.0.1:5050 --sout "#transcode{venc=x264{fps=2}}:file{dst=/home/pi/Git/hailo-rpi5-examples/projet/buffer-videos/output.mp4}" --run-time=5 vlc://quit
 
-ffmpeg -i output.mp4 -s 640x640 -c:a copy output-bis.mp4
+ffmpeg -i /home/pi/Git/hailo-rpi5-examples/projet/buffer-videos/output.mp4 -r 25 -s 640x640 -c:a copy /home/pi/Git/hailo-rpi5-examples/projet/buffer-videos/output-bis.mp4
 
 source /home/pi/Git/hailo-rpi5-examples/setup_env.sh
 
-source /home/pi/Git/hailo-rpi5-examples/projet/test.sh output-bis resultat
+source /home/pi/Git/hailo-rpi5-examples/projet/test.sh /home/pi/Git/hailo-rpi5-examples/projet/buffer-videos/output-bis /home/pi/Git/hailo-rpi5-examples/projet/resultat
 
 source /home/pi/test-venv/bin/activate
 
-python /home/pi/Git/hailo-rpi5-examples/projet/seconde-ia.py resultat.txt
+python /home/pi/Git/hailo-rpi5-examples/projet/seconde-ia.py /home/pi/Git/hailo-rpi5-examples/projet/resultat.txt
 
 

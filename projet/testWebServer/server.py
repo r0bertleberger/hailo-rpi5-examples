@@ -44,9 +44,9 @@ def index():
         
         # Choisir le script à exécuter en fonction de l'option sélectionnée
         if script_choice == "script-1":
-            script_path = "/home/pi/Git/hailo-rpi5-examples/projet/testWebServer/lancer-ia"
+            script_path = "/home/pi/Git/hailo-rpi5-examples/projet/testWebServer/lancer-ia.sh"
         elif script_choice == "script-2":
-            script_path = "/home/pi/Git/hailo-rpi-examples/projet/testWebServer/afficher-resultats.sh"
+            script_path = "/home/pi/Git/hailo-rpi5-examples/projet/clean.sh"
         
         if script_path:
             try:
@@ -55,9 +55,9 @@ def index():
                     ["/bin/bash", script_path], capture_output=True, text=True, check=True
                 )
                 if script_choice == "script-1":
-                    output = "l'IA est en train de tourner"
+                    output = result.stdout
                 else:
-                    output = result.stdout  # Capture stdout
+                    output = "nettoyage en cours"
             except subprocess.CalledProcessError as e:
                 output = f"Erreur lors de l'exécution du script : {e.stderr}"
     
