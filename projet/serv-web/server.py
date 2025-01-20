@@ -92,19 +92,15 @@ def index():
         script_choice = request.form.get("script_choice")
         
         if script_choice == "script-1":
-            script_path = "/home/r0bert/testWebServer/lancement-ia.sh"
+            script_path = "/home/pi/Git/hailo-rpi5-examples/projet/demo-bis.sh"
         elif script_choice == "script-2":
-            script_path = "/home/r0bert/testWebServer/clean.sh"
+            script_path = "/home/pi/Git/hailo-rpi5-examples/projet/clean.sh"
         
         if script_path:
             try:
                 result = subprocess.run(
                     ["/bin/bash", script_path], capture_output=True, text=True, check=True
                 )
-                if script_choice == "script-1":
-                    output = result.stdout
-                else:
-                    output = "nettoyage en cours"
             except subprocess.CalledProcessError as e:
                 output = f"Erreur lors de l'exécution du script : {e.stderr}"
     

@@ -12,7 +12,7 @@ echo "analyse via YOLO-v8 de la vidéo......" >> /home/pi/Git/hailo-rpi5-example
 
 source /home/pi/Git/hailo-rpi5-examples/setup_env.sh
 
-source /home/pi/Git/hailo-rpi5-examples/projet/test.sh /home/pi/Git/hailo-rpi5-examples/projet/buffer-videos/output-bis /home/pi/Git/hailo-rpi5-examples/projet/resultat
+source /home/pi/Git/hailo-rpi5-examples/projet/test.sh /home/pi/Git/hailo-rpi5-examples/projet/buffer-videos/output-bis.mp4 /home/pi/Git/hailo-rpi5-examples/projet/resultat.txt
 
 echo "analyse par le random forest de la vidéo......" >> /home/pi/Git/hailo-rpi5-examples/projet/resultat-bis.txt
 source /home/pi/test-venv/bin/activate

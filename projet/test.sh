@@ -1,7 +1,7 @@
 #! /bin/bash
 
 
-VIDEO_PATH="$1.mp4"
+VIDEO_PATH="$1"
 OUT_PATH="$2"
 
 echo $VIDEO_PATH
@@ -21,9 +21,9 @@ then
 
 	echo $TIME_TO_RUN
 
-	timeout $TIME_TO_RUN python /home/pi/Git/hailo-rpi5-examples/basic_pipelines/pose_estimation.py --input $VIDEO_PATH >> $OUT_PATH.txt
+	timeout $TIME_TO_RUN python /home/pi/Git/hailo-rpi5-examples/basic_pipelines/pose_estimation.py --input $VIDEO_PATH >> $OUT_PATH
 else
 	echo "probleme"
 fi
 
-python /home/pi/Git/hailo-rpi5-examples/projet/enlever-ligne.py $OUT_PATH.txt "Frame count: $FRAME_NUMBER"
+python /home/pi/Git/hailo-rpi5-examples/projet/enlever-ligne.py $OUT_PATH "Frame count: $FRAME_NUMBER"

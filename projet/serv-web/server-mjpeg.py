@@ -11,7 +11,7 @@ lock = threading.Lock()
 
 def update_frame_buffer():
     global frame_buffer
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture("http://192.168.1.3:81/stream")
 
     if not cap.isOpened():
         print("Error: Failed to open video stream.")
