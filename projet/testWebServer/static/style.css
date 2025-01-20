@@ -1,0 +1,67 @@
+/* Conteneur principal en flex */
+.container {
+    display: flex; /* Organise les enfants en rangée */
+    flex-direction: row; /* Affichage en ligne */
+    justify-content: space-between; /* Espace entre les colonnes */
+    align-items: flex-start; /* Alignement au début verticalement */
+    gap: 20px; /* Espacement entre les colonnes */
+    width: 100%; /* Utilise toute la largeur */
+    box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur totale */
+}
+
+/* Colonne vidéo */
+.video-container {
+    flex: 1; /* Permet d'occuper un espace proportionnel */
+    max-width: 48%; /* Largeur maximale (48% pour laisser un petit espace) */
+}
+
+/* Image dans la colonne vidéo */
+.video-container img {
+    width: 100%; /* Remplit la colonne */
+    border: 5px solid #ddd;
+    border-radius: 10px;
+}
+
+/* Colonne des scripts */
+.script-container {
+    flex: 1; /* Occupe l'autre moitié */
+    max-width: 48%; /* Largeur maximale (48% pour laisser un petit espace) */
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box; /* Inclut le padding et la bordure */
+}
+
+/* Boutons de script */
+.script-buttons {
+    display: flex;
+    gap: 10px; /* Espacement entre les boutons */
+    margin-bottom: 20px;
+}
+
+.script-buttons button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.script-buttons button:hover {
+    background-color: #0056b3;
+}
+
+/* Résultat du script */
+.script-output pre {
+    background: #f4f4f9;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto; /* Barre de défilement si nécessaire */
+}
+
