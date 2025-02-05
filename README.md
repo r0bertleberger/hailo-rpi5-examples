@@ -6,11 +6,11 @@ Dans le cadre du projet G1-G2 à l'École Centrale de Lille, nous avons besoin d
 
 ```mermaid
 graph LR;
-    C[📷 caméra WiFi] 
+    C[📷 esp32-cam] 
 
     subgraph "🍓 Raspberry Pi"
         direction TB
-        AP[📡 mostapd]
+        AP[📡 hostapd]
         DHCP[dnsmasq]
         Mjpeg[🗄️ mjpeg-rebroadcast]
         Main[🗄️ serveur main]
