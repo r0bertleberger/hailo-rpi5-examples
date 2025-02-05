@@ -13,7 +13,7 @@ graph LR;
         AP[📡 mostapd]
         DHCP[dnsmasq]
         Mjpeg[🗄️ mjpeg-rebroadcast]
-        Main[🗄️ merveur main]
+        Main[🗄️ serveur main]
 
         AP <--> |attribue les IP| DHCP
         Mjpeg --> |flux vidéo| Main
