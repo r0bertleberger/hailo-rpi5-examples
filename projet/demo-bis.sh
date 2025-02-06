@@ -1,6 +1,6 @@
 #!bin/bash
 
-echo "début de l'enregistrement de la vidéo" >> /home/pi/Git/hailo-rpi5-examples/projet/resultat-bis.txt
+echo "début de l'enregistrement de la vidéo......" >> /home/pi/Git/hailo-rpi5-examples/projet/resultat-bis.txt
 
 timeout 5 cvlc http://127.0.0.1:5050 --sout "#transcode{venc=x264{fps=2}}:file{dst=/home/pi/Git/hailo-rpi5-examples/projet/buffer-videos/output.mp4}" --run-time=5 vlc://quit
 
