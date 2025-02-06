@@ -4,6 +4,7 @@ import requests
 
 app = Flask(__name__)
 
+
 # partie HTML / appel du CSS
 HTML_TEMPLATE = """
 <!DOCTYPE html>
@@ -11,9 +12,38 @@ HTML_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exécuter Scripts et Flux MJPEG</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>File Content Viewer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        async function fetchContent() {
+            try {
+                const response = await fetch('/content');
+                const data = await response.json();
+
+                const contentContainer = document.getElementById('content');
+                contentContainer.innerHTML = ''; // Clear current content
+
+                // Add each line from the file
+                data.forEach(line => {
+                    const li = document.createElement('li');
+                    li.textContent = line.trim();
+                    contentContainer.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Error fetching content:', error);
+            }
+        }
+
+        // Fetch content every second
+        setInterval(fetchContent, 1000);
+
+        // Fetch content on initial page load
+        window.onload = fetchContent;
+    </script>
 </head>
+<nav>
+    <img src ="{{ url_for('static', filename='logo.png') }}" alt="logo projet">
+</nav>
 <body>
     <div class="container">
         <!-- Vidéo -->
@@ -25,26 +55,21 @@ HTML_TEMPLATE = """
         <!-- Scripts -->
         <div class="script-container">
             <h1>Exécuter un script</h1>
-            
+
             <!-- Boutons de sélection de scripts -->
             <div class="script-buttons">
                 <form method="post">
-                    <button type="submit" name="script_choice" value="script-1">Script 1</button>
+                    <button type="submit" name="script_choice" value="script-1">Lance l'IA</button>
                 </form>
                 <form method="post">
-                    <button type="submit" name="script_choice" value="script-2">Script 2</button>
+                    <button type="submit" name="script_choice" value="script-2">Clean</button>
                 </form>
             </div>
-
-            <!-- Résultats -->
-            {% if output %}
-                <div class="script-output">
-                    <h2>Sortie du script :</h2>
-                    <pre>{{ output }}</pre>
-                </div>
-            {% endif %}
         </div>
     </div>
+    <ul id="content">
+        <!-- Content will be dynamically added here -->
+    </ul>
 </body>
 </html>
 """
