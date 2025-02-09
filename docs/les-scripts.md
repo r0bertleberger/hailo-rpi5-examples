@@ -37,3 +37,11 @@ Capture une vidéo, l'analyse via `YOLO-v8` puis analyse le résultat avec le ra
 
 ##### Sortie 
 - `cout`, le résultat de l'analyse.
+
+### `demo-bis.sh`
+
+Capture une vidéo, l'analyse via `YOLO-v8` puis analyse le résultat avec le random forest, et donne, dans le tty et dans un fichie texte, le résultat quant à la justesse de la posture.
+
+##### Sortie 
+- `cout`, le résultat de l'analyse.
+- `resultat-bis.txt` fichier regroupant le résultat de l'anlyse
